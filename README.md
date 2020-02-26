@@ -28,5 +28,6 @@
 2. locate 'External IP' for hazelcast-mancenter-svc
 3. Open page in browser http://[External IP]:8080/mancenter
 
-
+##### Credit
+This repo was initiated from the good work done by Brent Griffin found here: https://github.com/brentgriffin/2018BootcampK8sDemo 
 
