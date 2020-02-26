@@ -29,5 +29,6 @@
 3. Open page in browser http://[External IP]:8080/mancenter
 
 ##### Credit
-This repo was initiated from the good work done by Brent Griffin : https://dotcms.com/blog/post/container-orchestration-running-dotcms-in-kubernetes
+This repo was initiated from the good work done by Brent Griffin : 
+https://dotcms.com/blog/post/container-orchestration-running-dotcms-in-kubernetes
 
