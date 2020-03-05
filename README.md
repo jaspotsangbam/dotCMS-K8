@@ -19,9 +19,13 @@ dotCMS Kubernetes Demo Artifacts
 
 ## Kube
 `kubectl get svc`
+
 `kubectl get pods`
+
 `kubectl logs -f --prefix -lapp=dotcms`
+
 `kubectl logs -f --prefix -lapp=haproxy`
+
 `kubectl exec -it  {podname} -- /bin/bash`
 
 
