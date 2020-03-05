@@ -1,5 +1,5 @@
-# 2018BootcampK8sDemo
-2018 Bootcamp Kubernetes Demo Artifacts
+# dotCMS Kubernetes Demo
+dotCMS Kubernetes Demo Artifacts
 
 ## Prerequisites ##
 1. Have a Google Cloud Platform Account with ability to start up at least 12 cpus in the us-central1-c location (or custom location if you are modifying scripts).  This needs to be enabled or you need to reduce the number of instances specified in the setup-01-create-cluster.sh file.
@@ -17,16 +17,20 @@
 
 ## Example Interactions ##
 
+## Kube
+`kubectl get svc`
+`kubectl get pods`
+`kubectl logs -f --prefix -lapp=dotcms`
+`kubectl logs -f --prefix -lapp=haproxy`
+`kubectl exec -it  {podname} -- /bin/bash`
+
+
+
 ### Access dotcms
 1. run `kubectl get svc`
 2. locate 'External IP' for haproxy-svc
 3. Open page in browser http://[External IP]/
 4. If you receive a 503 Service Unavailable, dotCMS may still be initializing.  You can just wait and refresh or if you want to view the logs, you can use kubectl logs command to view the logs for the dotcms pod.
-
-### Access Hazelcast Mancenter
-1. run 'kubectl get svc'
-2. locate 'External IP' for hazelcast-mancenter-svc
-3. Open page in browser http://[External IP]:8080/mancenter
 
 
 
