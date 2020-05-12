@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: haproxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: haproxy 
+  template:
+    metadata:
+      name: haproxy
+      labels:
+        app: haproxy
+    spec:
+      volumes:
+      - name: dotcmsssl
+        configMap:
+          name: dotcms.ssl.cert
+      containers:
+      - name: haproxy
+        image: dotcms/haproxy:1.8-os
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+          - containerPort: 8443
+        volumeMounts:
+          - name: dotcmsssl
+            mountPath: "/certs/haproxy.crt"
+            subPath: "cert.pem"
+        env:
+        - name: HAPROXY_CERT_PATH
+          value: '/certs'
+        - name: HAPROXY_REDIRECT_HTTPS_ALL
+          value: 'true'
+        - name: HAPROXY_ADMIN_PASSWORD
+          value: 'dotcmsAdmin'
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: haproxy-svc
+spec:
+  selector:
+    app: haproxy
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  - name: https
+    port: 443
+    targetPort: 8443
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+  sessionAffinity: None
